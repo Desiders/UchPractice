@@ -3,7 +3,7 @@ using static Uch.Models;
 
 namespace Uch;
 
-internal class Database
+public class Database
 {
     public class AppDbContext : DbContext
     {

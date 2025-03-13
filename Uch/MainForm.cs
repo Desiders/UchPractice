@@ -9,8 +9,8 @@ public partial class MainForm : Form
 {
     private readonly AppDbContext db;
 
-    private int currentPage = 1;
     private const int pageSize = 3;
+    private int currentPage = 1;
     private int currentMaterials;
     private int totalMaterials;
     private int totalPages;
@@ -47,9 +47,9 @@ public partial class MainForm : Form
     private void LoadFilterTypes()
     {
         var types = db.Materials
-            .Select(m => m.Type)
-            .Distinct()
-            .OrderBy(t => t);
+           .Select(m => m.Type)
+           .Distinct()
+           .OrderBy(t => t).ToArray();
 
         foreach (var type in types)
         {
@@ -96,6 +96,7 @@ public partial class MainForm : Form
                 Dock = DockStyle.Top
             };
             card.SelectionChanged += OnMaterialSelected;
+            card.EditRequested += OnMaterialEditRequested;
             panelMaterials.Controls.Add(card);
             panelMaterials.Controls.SetChildIndex(card, 0);
         }
@@ -131,6 +132,16 @@ public partial class MainForm : Form
             selectedMaterials.Remove(material);
         }
         btnChangeMinCount.Visible = selectedMaterials.Count > 0;
+    }
+
+    private void OnMaterialEditRequested(Material material)
+    {
+        var form = new EditMaterialForm(db, material);
+        if (form.ShowDialog() == DialogResult.OK)
+        {
+            CalculateTotalMaterials(); // if material has been deleted
+            LoadMaterials(currentPage);
+        }
     }
 
     private void UpdatePaginationButtons()
@@ -221,6 +232,7 @@ public class MaterialCard : UserControl
 {
     private CheckBox checkBox;
     public event Action<Material, bool> SelectionChanged;
+    public event Action<Material> EditRequested;
 
     public MaterialCard(Material material)
     {
@@ -271,6 +283,17 @@ public class MaterialCard : UserControl
             TextAlign = ContentAlignment.MiddleRight
         };
 
+        var btnEdit = new Button
+        {
+            Text = "✎",
+            AutoSize = true,
+            Width = 25,
+            Height = 25,
+            BackColor = Color.LightGray,
+            FlatStyle = FlatStyle.Flat,
+        };
+        btnEdit.Click += (s, e) => EditRequested?.Invoke(material);
+
         var infoPanel = new FlowLayoutPanel
         {
             FlowDirection = FlowDirection.TopDown,
@@ -302,7 +325,7 @@ public class MaterialCard : UserControl
 
         var table = new TableLayoutPanel
         {
-            ColumnCount = 4,
+            ColumnCount = 5,
             RowCount = 1,
             Dock = DockStyle.Fill
         };
@@ -311,11 +334,13 @@ public class MaterialCard : UserControl
         table.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80));
         table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         table.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        table.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30));
 
         table.Controls.Add(checkBox, 0, 0);
         table.Controls.Add(pictureBox, 1, 0);
         table.Controls.Add(infoPanel, 2, 0);
         table.Controls.Add(lblStock, 3, 0);
+        table.Controls.Add(btnEdit, 4, 0);
 
         Controls.Add(table);
     }

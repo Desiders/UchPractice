@@ -26,7 +26,7 @@ public class Models
 #pragma warning restore CS8618
 
         [Required]
-        public int Price { get; set; }
+        public double Price { get; set; }
 
         [Required, MinLength(0)]
         public int Count { get; set; } = 0;

@@ -78,7 +78,7 @@
             panelMaterials.AutoScroll = true;
             panelMaterials.Location = new Point(12, 78);
             panelMaterials.Name = "panelMaterials";
-            panelMaterials.Size = new Size(447, 302);
+            panelMaterials.Size = new Size(450, 302);
             panelMaterials.TabIndex = 3;
             // 
             // lblCurrentPage
@@ -179,7 +179,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(464, 441);
+            ClientSize = new Size(474, 441);
             Controls.Add(btnChangeMinCount);
             Controls.Add(lblCount);
             Controls.Add(lblCountText);
