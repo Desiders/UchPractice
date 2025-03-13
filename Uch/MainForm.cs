@@ -189,6 +189,17 @@ public class MaterialCard : UserControl
         Height = 100;
         BorderStyle = BorderStyle.FixedSingle;
 
+        int threshold = material.MinCount * 3;
+
+        if (material.Count < material.MinCount)
+        {
+            BackColor = ColorTranslator.FromHtml("#d19292");
+        }
+        else if (material.Count <= threshold)
+        {
+            BackColor = ColorTranslator.FromHtml("#ffba01");
+        }
+
         var resourcesPath = Path.Combine(Application.StartupPath, "resources");
 
         var pictureBox = new PictureBox
