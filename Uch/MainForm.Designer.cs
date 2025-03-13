@@ -39,6 +39,7 @@
             btnRight2 = new Button();
             lblCountText = new Label();
             lblCount = new Label();
+            btnChangeMinCount = new Button();
             SuspendLayout();
             // 
             // textBoxSearch
@@ -77,7 +78,7 @@
             panelMaterials.AutoScroll = true;
             panelMaterials.Location = new Point(12, 78);
             panelMaterials.Name = "panelMaterials";
-            panelMaterials.Size = new Size(447, 314);
+            panelMaterials.Size = new Size(447, 302);
             panelMaterials.TabIndex = 3;
             // 
             // lblCurrentPage
@@ -163,11 +164,23 @@
             lblCount.Size = new Size(0, 15);
             lblCount.TabIndex = 10;
             // 
+            // btnChangeMinCount
+            // 
+            btnChangeMinCount.Location = new Point(12, 399);
+            btnChangeMinCount.Name = "btnChangeMinCount";
+            btnChangeMinCount.Size = new Size(226, 30);
+            btnChangeMinCount.TabIndex = 11;
+            btnChangeMinCount.Text = "Изменить минимальное количество";
+            btnChangeMinCount.UseVisualStyleBackColor = true;
+            btnChangeMinCount.Visible = false;
+            btnChangeMinCount.Click += btnChangeMinCount_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(471, 496);
+            ClientSize = new Size(464, 441);
+            Controls.Add(btnChangeMinCount);
             Controls.Add(lblCount);
             Controls.Add(lblCountText);
             Controls.Add(btnRight2);
@@ -180,7 +193,7 @@
             Controls.Add(comboBoxSort);
             Controls.Add(textBoxSearch);
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Главное меню";
             Load += MainForm_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -199,5 +212,6 @@
         private Button btnRight2;
         private Label lblCountText;
         private Label lblCount;
+        private Button btnChangeMinCount;
     }
 }

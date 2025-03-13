@@ -15,6 +15,8 @@ public partial class MainForm : Form
     private int totalMaterials;
     private int totalPages;
 
+    private List<Material> selectedMaterials = new();
+
     public MainForm(IServiceProvider provider)
     {
         db = provider.GetRequiredService<AppDbContext>();
@@ -93,6 +95,7 @@ public partial class MainForm : Form
             {
                 Dock = DockStyle.Top
             };
+            card.SelectionChanged += OnMaterialSelected;
             panelMaterials.Controls.Add(card);
             panelMaterials.Controls.SetChildIndex(card, 0);
         }
@@ -115,6 +118,19 @@ public partial class MainForm : Form
             5 => query.OrderByDescending(m => m.Price),
             _ => query
         };
+    }
+
+    private void OnMaterialSelected(Material material, bool isSelected)
+    {
+        if (isSelected)
+        {
+            selectedMaterials.Add(material);
+        }
+        else
+        {
+            selectedMaterials.Remove(material);
+        }
+        btnChangeMinCount.Visible = selectedMaterials.Count > 0;
     }
 
     private void UpdatePaginationButtons()
@@ -179,10 +195,33 @@ public partial class MainForm : Form
         currentPage = 1;
         LoadMaterials(currentPage);
     }
+
+    private void btnChangeMinCount_Click(object sender, EventArgs e)
+    {
+        if (selectedMaterials.Count == 0) return;
+
+        int oldMaxMinCount = selectedMaterials.Max(m => m.MinCount);
+
+        var form = new ChangeMinCountForm(oldMaxMinCount);
+        if (form.ShowDialog() == DialogResult.OK)
+        {
+            db.Materials
+                .Where(m => selectedMaterials.Select(sm => sm.Id).Contains(m.Id))
+                .ExecuteUpdate(setters => setters.SetProperty(m => m.MinCount, form.NewMinCount));
+            db.SaveChanges();
+            db.ChangeTracker.Clear();
+            selectedMaterials.Clear();
+
+            LoadMaterials(currentPage);
+        }
+    }
 }
 
 public class MaterialCard : UserControl
 {
+    private CheckBox checkBox;
+    public event Action<Material, bool> SelectionChanged;
+
     public MaterialCard(Material material)
     {
         Width = 440;
@@ -254,20 +293,29 @@ public class MaterialCard : UserControl
             infoPanel.Controls.Add(lblProviders);
         }
 
+        checkBox = new CheckBox
+        {
+            AutoSize = true,
+            Margin = new Padding(5, 5, 5, 5),
+        };
+        checkBox.CheckedChanged += (s, e) => SelectionChanged?.Invoke(material, checkBox.Checked);
+
         var table = new TableLayoutPanel
         {
-            ColumnCount = 3,
+            ColumnCount = 4,
             RowCount = 1,
             Dock = DockStyle.Fill
         };
 
+        table.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30));
         table.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80));
         table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         table.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-        table.Controls.Add(pictureBox, 0, 0);
-        table.Controls.Add(infoPanel, 1, 0);
-        table.Controls.Add(lblStock, 2, 0);
+        table.Controls.Add(checkBox, 0, 0);
+        table.Controls.Add(pictureBox, 1, 0);
+        table.Controls.Add(infoPanel, 2, 0);
+        table.Controls.Add(lblStock, 3, 0);
 
         Controls.Add(table);
     }
