@@ -63,7 +63,7 @@ public class Models
 #pragma warning restore CS8618
 
         [Required]
-        public long Inn { get; set; } // Возможно, ошибка в названии столбца, уточните
+        public long Inn { get; set; }
 
         [Required]
         public int Rating { get; set; }
