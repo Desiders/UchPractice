@@ -4,18 +4,20 @@ namespace Uch;
 
 public partial class ChangeMinCountForm : Form
 {
-    private int oldMaxMinCount;
+    private int _oldMaxMinCount;
 
     public int NewMinCount;
 
     public ChangeMinCountForm(int oldMaxMinCount)
     {
+        _oldMaxMinCount = oldMaxMinCount;
+
         InitializeComponent();
     }
 
     private void ChangeMinCountForm_Load(object sender, EventArgs e)
     {
-        txtInput.Text = oldMaxMinCount.ToString();
+        txtInput.Text = _oldMaxMinCount.ToString();
     }
 
     private void btnOk_Click(object sender, EventArgs e)
