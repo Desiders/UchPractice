@@ -1,6 +1,4 @@
-﻿
-
-namespace Uch;
+﻿namespace Uch;
 
 public partial class ChangeMinCountForm : Form
 {
