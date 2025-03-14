@@ -209,7 +209,7 @@
             // 
             lbxMaterialProviders.DisplayMember = "Name";
             lbxMaterialProviders.FormattingEnabled = true;
-            lbxMaterialProviders.Location = new Point(499, 9);
+            lbxMaterialProviders.Location = new Point(515, 9);
             lbxMaterialProviders.Name = "lbxMaterialProviders";
             lbxMaterialProviders.SelectionMode = SelectionMode.MultiSimple;
             lbxMaterialProviders.Size = new Size(157, 94);
@@ -218,7 +218,7 @@
             // lblMaterialProviders
             // 
             lblMaterialProviders.AutoSize = true;
-            lblMaterialProviders.Location = new Point(350, 9);
+            lblMaterialProviders.Location = new Point(366, 9);
             lblMaterialProviders.Name = "lblMaterialProviders";
             lblMaterialProviders.Size = new Size(129, 15);
             lblMaterialProviders.TabIndex = 20;
@@ -227,7 +227,7 @@
             // lblMaterialProvidersHelp
             // 
             lblMaterialProvidersHelp.AutoSize = true;
-            lblMaterialProvidersHelp.Location = new Point(350, 24);
+            lblMaterialProvidersHelp.Location = new Point(366, 24);
             lblMaterialProvidersHelp.Name = "lblMaterialProvidersHelp";
             lblMaterialProvidersHelp.Size = new Size(132, 15);
             lblMaterialProvidersHelp.TabIndex = 21;
@@ -236,7 +236,7 @@
             // lblAllProviders
             // 
             lblAllProviders.AutoSize = true;
-            lblAllProviders.Location = new Point(350, 134);
+            lblAllProviders.Location = new Point(366, 134);
             lblAllProviders.Name = "lblAllProviders";
             lblAllProviders.Size = new Size(100, 15);
             lblAllProviders.TabIndex = 22;
@@ -245,7 +245,7 @@
             // lblAllProvidersHelp
             // 
             lblAllProvidersHelp.AutoSize = true;
-            lblAllProvidersHelp.Location = new Point(350, 149);
+            lblAllProvidersHelp.Location = new Point(366, 149);
             lblAllProvidersHelp.Name = "lblAllProvidersHelp";
             lblAllProvidersHelp.Size = new Size(146, 15);
             lblAllProvidersHelp.TabIndex = 23;
@@ -255,7 +255,7 @@
             // 
             lbxAllProviders.DisplayMember = "Name";
             lbxAllProviders.FormattingEnabled = true;
-            lbxAllProviders.Location = new Point(499, 109);
+            lbxAllProviders.Location = new Point(515, 109);
             lbxAllProviders.Name = "lbxAllProviders";
             lbxAllProviders.SelectionMode = SelectionMode.MultiSimple;
             lbxAllProviders.Size = new Size(157, 94);
@@ -275,7 +275,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(670, 261);
+            ClientSize = new Size(684, 261);
             Controls.Add(btnDelete);
             Controls.Add(lbxAllProviders);
             Controls.Add(lblAllProvidersHelp);

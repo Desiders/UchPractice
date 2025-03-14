@@ -40,6 +40,7 @@
             lblCountText = new Label();
             lblCount = new Label();
             btnChangeMinCount = new Button();
+            btnAddMaterial = new Button();
             SuspendLayout();
             // 
             // textBoxSearch
@@ -85,7 +86,7 @@
             // 
             lblCurrentPage.AutoSize = true;
             lblCurrentPage.Font = new Font("Arial Black", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCurrentPage.Location = new Point(327, 408);
+            lblCurrentPage.Location = new Point(331, 397);
             lblCurrentPage.Name = "lblCurrentPage";
             lblCurrentPage.Size = new Size(56, 18);
             lblCurrentPage.TabIndex = 4;
@@ -97,7 +98,7 @@
             btnLeft1.FlatAppearance.BorderSize = 0;
             btnLeft1.FlatStyle = FlatStyle.Flat;
             btnLeft1.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLeft1.Location = new Point(293, 406);
+            btnLeft1.Location = new Point(297, 395);
             btnLeft1.Name = "btnLeft1";
             btnLeft1.Size = new Size(28, 23);
             btnLeft1.TabIndex = 5;
@@ -111,7 +112,7 @@
             btnLeft2.FlatAppearance.BorderSize = 0;
             btnLeft2.FlatStyle = FlatStyle.Flat;
             btnLeft2.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLeft2.Location = new Point(244, 406);
+            btnLeft2.Location = new Point(248, 395);
             btnLeft2.Name = "btnLeft2";
             btnLeft2.Size = new Size(43, 23);
             btnLeft2.TabIndex = 6;
@@ -125,7 +126,7 @@
             btnRight1.FlatAppearance.BorderSize = 0;
             btnRight1.FlatStyle = FlatStyle.Flat;
             btnRight1.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRight1.Location = new Point(389, 406);
+            btnRight1.Location = new Point(393, 395);
             btnRight1.Name = "btnRight1";
             btnRight1.Size = new Size(28, 23);
             btnRight1.TabIndex = 7;
@@ -139,7 +140,7 @@
             btnRight2.FlatAppearance.BorderSize = 0;
             btnRight2.FlatStyle = FlatStyle.Flat;
             btnRight2.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRight2.Location = new Point(423, 406);
+            btnRight2.Location = new Point(427, 395);
             btnRight2.Name = "btnRight2";
             btnRight2.Size = new Size(35, 23);
             btnRight2.TabIndex = 8;
@@ -166,7 +167,7 @@
             // 
             // btnChangeMinCount
             // 
-            btnChangeMinCount.Location = new Point(12, 399);
+            btnChangeMinCount.Location = new Point(12, 429);
             btnChangeMinCount.Name = "btnChangeMinCount";
             btnChangeMinCount.Size = new Size(226, 30);
             btnChangeMinCount.TabIndex = 11;
@@ -175,11 +176,22 @@
             btnChangeMinCount.Visible = false;
             btnChangeMinCount.Click += btnChangeMinCount_Click;
             // 
+            // btnAddMaterial
+            // 
+            btnAddMaterial.Location = new Point(12, 391);
+            btnAddMaterial.Name = "btnAddMaterial";
+            btnAddMaterial.Size = new Size(226, 30);
+            btnAddMaterial.TabIndex = 12;
+            btnAddMaterial.Text = "Добавить новый материал";
+            btnAddMaterial.UseVisualStyleBackColor = true;
+            btnAddMaterial.Click += btnAddMaterial_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(474, 441);
+            ClientSize = new Size(474, 471);
+            Controls.Add(btnAddMaterial);
             Controls.Add(btnChangeMinCount);
             Controls.Add(lblCount);
             Controls.Add(lblCountText);
@@ -213,5 +225,6 @@
         private Label lblCountText;
         private Label lblCount;
         private Button btnChangeMinCount;
+        private Button btnAddMaterial;
     }
 }

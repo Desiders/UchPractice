@@ -35,7 +35,6 @@ internal static class Program
         using (var scope = provider.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
             db.Database.EnsureCreated();
 
             logger.LogInformation("Database created");

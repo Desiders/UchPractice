@@ -226,6 +226,16 @@ public partial class MainForm : Form
             LoadMaterials(currentPage);
         }
     }
+
+    private void btnAddMaterial_Click(object sender, EventArgs e)
+    {
+        var form = new AddMaterialForm(db);
+        if (form.ShowDialog() == DialogResult.OK)
+        {
+            CalculateTotalMaterials(); // if material has been added
+            LoadMaterials(currentPage);
+        }
+    }
 }
 
 public class MaterialCard : UserControl

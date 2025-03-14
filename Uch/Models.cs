@@ -21,9 +21,7 @@ public class Models
         public string Type { get; set; }
 #pragma warning restore CS8618
 
-#pragma warning disable CS8618
-        public string ImagePath { get; set; }
-#pragma warning restore CS8618
+        public string? ImagePath { get; set; } = null;
 
         [Required]
         public double Price { get; set; }
@@ -34,8 +32,8 @@ public class Models
         [Required, MinLength(0)]
         public int MinCount { get; set; } = 0;
 
-        [MinLength(0)]
-        public int? CountPerOne { get; set; }
+        [Required, MinLength(0)]
+        public int CountPerOne { get; set; } = 0;
 
         [Required, MaxLength(4)]
 #pragma warning disable CS8618
